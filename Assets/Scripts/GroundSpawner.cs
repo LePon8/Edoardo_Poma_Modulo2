@@ -54,7 +54,7 @@ public class GroundSpawner : MonoBehaviour
         for (int x = 0; x < wallGridX; x++)
         {
             for (int y = 0; y < wallGridY; y++)
-            {             
+            {    
                 Vector2 spawnWallPos = (Vector2.right * y * wallOffset + Vector2.down * x * wallOffset) + spawnPoint;
                 wallGrid[x, y] = spawnWallPos;
                 Instantiate(wallPrefab, spawnWallPos, Quaternion.identity, this.transform);
