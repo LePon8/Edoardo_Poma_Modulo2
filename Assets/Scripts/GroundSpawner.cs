@@ -76,7 +76,7 @@ public class GroundSpawner : MonoBehaviour
                             for (int a = 0; a < staticWallDimension; a++)
                             {
                                 Vector2 spawnStaticWallPos2 = (Vector2.up * a) + spawnStaticWall2;
-                                Instantiate(wallPrefab, spawnStaticWallPos2, Quaternion.identity/*, this.transform*/);
+                                Instantiate(wallPrefab, spawnStaticWallPos2, Quaternion.identity, this.transform);
                             }
 
                         }
@@ -92,7 +92,7 @@ public class GroundSpawner : MonoBehaviour
                             for (int b = 0; b < staticWallDimension; b++)
                             {
                                 Vector2 spawnStaticWallPos2 = (Vector2.left * b) + spawnStaticWall2;
-                                Instantiate(wallPrefab, spawnStaticWallPos2, Quaternion.identity/*, this.transform*/);
+                                Instantiate(wallPrefab, spawnStaticWallPos2, Quaternion.identity, this.transform);
                             }
 
                         }
