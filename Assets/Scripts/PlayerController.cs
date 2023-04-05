@@ -4,9 +4,18 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    [Header("Movement")]
     [SerializeField] float playerSpeed;
-    //private Vector2 direction = Vector2.down;
 
+    [Header("Shooting")]
+    [SerializeField] GameObject bomb;
+    [SerializeField] float countDownBetweenShoot;
+    private float countDownNextShoot;
+
+
+
+    //private Vector2 direction = Vector2.down;
+    
     Rigidbody2D rb;
 
     // Start is called before the first frame update
@@ -19,6 +28,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         PlayerMovement();
+        InstantiateBomb();
     }
 
     private void PlayerMovement()
@@ -29,5 +39,19 @@ public class PlayerController : MonoBehaviour
         Vector2 Movement = new Vector2(xMovement, yMovement);
         rb.MovePosition(rb.position + Movement * Time.deltaTime * playerSpeed);
 
+    }
+
+
+
+    private void InstantiateBomb()
+    {
+        if (Input.GetKeyDown(KeyCode.Space) && countDownNextShoot > countDownBetweenShoot)
+        {
+            Instantiate(bomb, transform.position, Quaternion.identity);
+            countDownNextShoot = 0;
+            
+        }
+
+        countDownNextShoot += Time.deltaTime;
     }
 }
