@@ -8,7 +8,7 @@ public class GroundSpawner : MonoBehaviour
     [SerializeField] private GameObject groundPrefab;
     [SerializeField] private int gridX;
     [SerializeField] private int gridY;
-    Vector2[,] groundGrid;
+    public Vector2[,] groundGrid;
 
     [Header("Wall")]
     [SerializeField] private GameObject wallPrefab;

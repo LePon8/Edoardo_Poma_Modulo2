@@ -12,6 +12,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float countDownBetweenShoot;
     private float countDownNextShoot;
 
+    GroundSpawner gs;
+
 
 
     //private Vector2 direction = Vector2.down;
@@ -35,9 +37,13 @@ public class PlayerController : MonoBehaviour
     {
         float xMovement = Input.GetAxis("Horizontal");
         float yMovement = Input.GetAxis("Vertical");
+        //xMovement = Mathf.Round(xMovement);
+        //yMovement = Mathf.Round(yMovement);
 
         Vector2 Movement = new Vector2(xMovement, yMovement);
+
         rb.MovePosition(rb.position + Movement * Time.deltaTime * playerSpeed);
+        
 
     }
 
@@ -47,7 +53,10 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space) && countDownNextShoot > countDownBetweenShoot)
         {
-            Instantiate(bomb, transform.position, Quaternion.identity);
+            Vector2 position = transform.position;
+            position.x = Mathf.Round(position.x);
+            position.y = Mathf.Round(position.y);
+            Instantiate(bomb, position, Quaternion.identity);
             countDownNextShoot = 0;
             
         }
