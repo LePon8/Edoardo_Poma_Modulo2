@@ -175,6 +175,9 @@ MonoBehaviour:
   wallGridX: 6
   wallGridY: 6
   wallOffset: 2
+  spawnStaticWall: {x: -1, y: 1}
+  spawnStaticWall2: {x: 13, y: -13}
+  staticWallDimension: 15
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0

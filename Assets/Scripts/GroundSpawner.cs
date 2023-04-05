@@ -18,6 +18,11 @@ public class GroundSpawner : MonoBehaviour
     [SerializeField] private int wallOffset;
     Vector2[,] wallGrid;
 
+    [Header("Static Wall")]
+    [SerializeField] private Vector2 spawnStaticWall;
+    [SerializeField] private Vector2 spawnStaticWall2;
+    [SerializeField] private int staticWallDimension;
+
 
 
     // Start is called before the first frame update
@@ -58,7 +63,42 @@ public class GroundSpawner : MonoBehaviour
                 Vector2 spawnWallPos = (Vector2.right * y * wallOffset + Vector2.down * x * wallOffset) + spawnPoint;
                 wallGrid[x, y] = spawnWallPos;
                 Instantiate(wallPrefab, spawnWallPos, Quaternion.identity, this.transform);
-                
+
+                if (x == 0 && y == 0)
+                {
+                    for (int i = 0; i < staticWallDimension; i++)
+                    {
+                        Vector2 spawnStaticWallPos = (Vector2.right * i) + spawnStaticWall;
+                        Instantiate(wallPrefab, spawnStaticWallPos, Quaternion.identity, this.transform);
+
+                        if (i >= staticWallDimension - 1)
+                        {
+                            for (int a = 0; a < staticWallDimension; a++)
+                            {
+                                Vector2 spawnStaticWallPos2 = (Vector2.up * a) + spawnStaticWall2;
+                                Instantiate(wallPrefab, spawnStaticWallPos2, Quaternion.identity/*, this.transform*/);
+                            }
+
+                        }
+                    }
+
+                    for (int j = 0; j < staticWallDimension; j++)
+                    {
+                        Vector2 spawnStaticWallPos = (Vector2.down * j) + spawnStaticWall;
+                        Instantiate(wallPrefab, spawnStaticWallPos, Quaternion.identity, this.transform);
+
+                        if (j >= staticWallDimension - 1)
+                        {
+                            for (int b = 0; b < staticWallDimension; b++)
+                            {
+                                Vector2 spawnStaticWallPos2 = (Vector2.left * b) + spawnStaticWall2;
+                                Instantiate(wallPrefab, spawnStaticWallPos2, Quaternion.identity/*, this.transform*/);
+                            }
+
+                        }
+                    }
+                }
+
             }
         }
     }
