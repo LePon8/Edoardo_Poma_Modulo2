@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class BombController : MonoBehaviour
 {
-    [SerializeField] float shootRange;
+    //[SerializeField] float shootRange;
     [SerializeField] GameObject shootPosition;
     [SerializeField] GameObject bullet;
+    [SerializeField] float timeBeforeExplosion;
     
     // Start is called before the first frame update
     void Start()
@@ -23,14 +24,18 @@ public class BombController : MonoBehaviour
    
     IEnumerator Bomb()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(timeBeforeExplosion);
         Destroy(gameObject);
 
         Instantiate(bullet, shootPosition.transform.position, Quaternion.identity);
         Instantiate(bullet, shootPosition.transform.position, Quaternion.Euler(0, 0, 90));
         Instantiate(bullet, shootPosition.transform.position, Quaternion.Euler(0, 0, -90));
         Instantiate(bullet, shootPosition.transform.position, Quaternion.Euler(0, 0, 180));
-        
+
+
+
+
+
 
         //RaycastHit2D hitRight = Physics2D.Raycast(transform.position, Vector3.right, shootRange);
         //RaycastHit2D hitLeft = Physics2D.Raycast(transform.position, Vector2.left, shootRange);
@@ -65,8 +70,8 @@ public class BombController : MonoBehaviour
         //}
 
 
-        
-        
-        
+
+
+
     }
 }

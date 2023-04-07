@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BulletController : MonoBehaviour
 {
+    [SerializeField] float timeAfterExplosion;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,8 +27,9 @@ public class BulletController : MonoBehaviour
 
     IEnumerator DestroyBullet()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(timeAfterExplosion);
         Destroy(gameObject);
     }
 
+    
 }

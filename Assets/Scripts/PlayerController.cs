@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float playerSpeed;
 
     [Header("Shooting")]
-    [SerializeField] GameObject bomb;
+    [SerializeField] public GameObject bomb;
     [SerializeField] float countDownBetweenShoot;
     private float countDownNextShoot;
 
