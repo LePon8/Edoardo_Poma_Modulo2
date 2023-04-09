@@ -23,6 +23,10 @@ public class BulletController : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        if (collision.gameObject.CompareTag("WallToDestroy"))
+        {
+            Destroy(collision.gameObject);
+        }
     }
 
     IEnumerator DestroyBullet()

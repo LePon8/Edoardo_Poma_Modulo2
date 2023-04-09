@@ -23,6 +23,8 @@ public class GroundSpawner : MonoBehaviour
     [SerializeField] private Vector2 spawnStaticWall2;
     [SerializeField] private int staticWallDimension;
 
+    [SerializeField] GameObject destroyWall;
+
 
 
     // Start is called before the first frame update
@@ -49,6 +51,10 @@ public class GroundSpawner : MonoBehaviour
                 Vector2 spawnPos = Vector2.right * j + Vector2.down * i;
                 groundGrid[i, j] = spawnPos;
                 Instantiate(groundPrefab, spawnPos, Quaternion.identity, this.transform);
+                //if (!gameObject.CompareTag("Wall"))
+                //{
+                //    Instantiate(destroyWall, Random.Range[groundGrid(i, j)], Quaternion.identity)
+                //}
             }
 
         }
