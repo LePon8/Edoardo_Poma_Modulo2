@@ -2,15 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+using TMPro;
 public class GameManager : MonoBehaviour
 {
-    public static GameManager gameManager { get; private set; }
+    //public static GameManager gameManager { get; private set; }
 
     [SerializeField] GameObject prefabsToInstantiate;
     UIManager UIM;
     PlayerController PC;
-    BombController BC;
+
+    [SerializeField] public TextMeshProUGUI TimerUI;
 
     private float timeLimit = 1;
     [SerializeField] float elapsedTime;
@@ -19,17 +20,21 @@ public class GameManager : MonoBehaviour
 
     public enum GameStatus
     {
-        Menu,
         GameRunning,
-        Pause,
-        Lose,
-        Win
+        Pause
     }
     [SerializeField] public GameStatus gameStatus;
 
     private void Awake()
     {
         UIM = FindObjectOfType<UIManager>();
+        TimerUI.text = 0.ToString();
+        Time.timeScale = 1;
+    }
+
+    public void UpdateTimer(float time)
+    {
+        TimerUI.text = Mathf.FloorToInt(time).ToString();
     }
 
     // Start is called before the first frame update
@@ -50,84 +55,46 @@ public class GameManager : MonoBehaviour
 
     void StatusGame()
     {
-        if(gameStatus == GameStatus.Menu)
-        {
-            //UIM.StartGame();
-            UIM.canvasMenu.SetActive(true);
-            UIM.canvasPausa.SetActive(false);
-            UIM.canvasLose.SetActive(false);
-            UIM.canvasWin.SetActive(false);
-            UIM.TimerUI.enabled = false;
-            Time.timeScale = 0;
-            PC.transform.position = Vector2.zero;
-        }
-        else if(gameStatus == GameStatus.GameRunning)
-        {
-            UIM.canvasMenu.SetActive(false);
-            UIM.canvasLose.SetActive(false);
-            UIM.canvasWin.SetActive(false);
-            UIM.TimerUI.enabled = true;
-            Time.timeScale = 1;
-            
-        }
-        if(Input.GetKeyDown(KeyCode.Escape) && gameStatus == GameStatus.GameRunning)
+        if (Input.GetKeyDown(KeyCode.Escape) && gameStatus == GameStatus.GameRunning)
         {
             gameStatus = GameStatus.Pause;
             UIM.canvasPausa.SetActive(true);
             Time.timeScale = 0;
             PC.enabled = false;
         }
-        else if(Input.GetKeyDown(KeyCode.Escape) && gameStatus == GameStatus.Pause)
+        else if (Input.GetKeyDown(KeyCode.Escape) && gameStatus == GameStatus.Pause)
         {
             gameStatus = GameStatus.GameRunning;
             UIM.canvasPausa.SetActive(false);
             Time.timeScale = 1;
             PC.enabled = true;
         }
-        if(gameStatus == GameStatus.Lose)
-        {
-            UIM.canvasLose.SetActive(true);
-            UIM.TimerUI.enabled = false;
-            PC.transform.position = Vector2.zero;
-            Destroy(GameObject.Find("Bomb(Clone)"));
-            
 
-        }
-        else if(gameStatus == GameStatus.Win)
-        {
-            UIM.canvasWin.SetActive(true);
-            UIM.TimerUI.enabled = false;
-            PC.transform.position = Vector2.zero;
-        }
     }
 
-    public void playGame()
-    {
-        gameStatus = GameStatus.GameRunning;
-    }
 
-    public void Menu()
-    {
-        gameStatus = GameStatus.Menu;
-    }
 
-    public void QuitGame()
-    {
-        Application.Quit();
-    }
+
+
 
     void TimerController()
     {
         elapsedTime -= Time.deltaTime;
-        UIM.UpdateTimer(elapsedTime);
+        UpdateTimer(elapsedTime);
 
         if(elapsedTime <= timeLimit)
         {
             Time.timeScale = 0;
-            UIM.TimerUI.text = "0";
-            gameStatus = GameStatus.Lose;
+            TimerUI.text = "0";
             elapsedTime = time;
+            GameOver();
             
         }
     }
+
+    public void GameOver()
+    {
+        SceneManager.LoadScene("GameOver");
+    }
+   
 }

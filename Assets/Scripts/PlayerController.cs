@@ -37,8 +37,6 @@ public class PlayerController : MonoBehaviour
     {
         float xMovement = Input.GetAxis("Horizontal");
         float yMovement = Input.GetAxis("Vertical");
-        //xMovement = Mathf.Round(xMovement);
-        //yMovement = Mathf.Round(yMovement);
 
         Vector2 Movement = new Vector2(xMovement, yMovement);
 

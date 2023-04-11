@@ -1,35 +1,40 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using TMPro;
 public class UIManager : MonoBehaviour
 {
-    [SerializeField] public GameObject canvasMenu;
     [SerializeField] public GameObject canvasPausa;
-    [SerializeField] public GameObject canvasLose;
-    [SerializeField] public GameObject canvasWin;
-    [SerializeField] public TextMeshProUGUI TimerUI;
-    //GameManager GM;
 
-    private void Awake()
-    {
-        //GM = FindObjectOfType<GameManager>();
-        TimerUI.text = 0.ToString();
-    }
+    PlayerController PC;
+
+
 
     private void Start()
     {
-        //Time.timeScale = 0;
         
+        PC = FindObjectOfType<PlayerController>();
     }
 
-    public void UpdateTimer(float time)
+    private void Update()
     {
-        TimerUI.text = Mathf.FloorToInt(time).ToString();
+       
     }
 
-    //public void StartGame()
-    //{
-    //    canvasMenu.SetActive(true);
-    //}
+    public void playGame()
+    {
+        SceneManager.LoadScene("SampleScene");
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
+
+    public void Menu()
+    {
+        SceneManager.LoadScene("Menu");
+    }
+
 }

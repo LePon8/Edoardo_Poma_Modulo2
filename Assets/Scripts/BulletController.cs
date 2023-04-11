@@ -5,10 +5,11 @@ using UnityEngine;
 public class BulletController : MonoBehaviour
 {
     [SerializeField] float timeAfterExplosion;
+    GameManager GM;
     // Start is called before the first frame update
     void Start()
     {
-        
+        GM = FindObjectOfType<GameManager>();
     }
 
     // Update is called once per frame
@@ -27,6 +28,16 @@ public class BulletController : MonoBehaviour
         {
             Destroy(collision.gameObject);
         }
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            Destroy(collision.gameObject);
+        }
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            collision.gameObject.SetActive(false);
+            GM.GameOver();
+        }
+
     }
 
     IEnumerator DestroyBullet()
