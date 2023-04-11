@@ -51,10 +51,7 @@ public class GroundSpawner : MonoBehaviour
                 Vector2 spawnPos = Vector2.right * j + Vector2.down * i;
                 groundGrid[i, j] = spawnPos;
                 Instantiate(groundPrefab, spawnPos, Quaternion.identity, this.transform);
-                //if (!gameObject.CompareTag("Wall"))
-                //{
-                //    Instantiate(destroyWall, Random.Range[groundGrid(i, j)], Quaternion.identity)
-                //}
+               
             }
 
         }

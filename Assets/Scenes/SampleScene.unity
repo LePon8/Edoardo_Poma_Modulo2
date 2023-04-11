@@ -408,7 +408,7 @@ MonoBehaviour:
   - {fileID: 1381239624}
   - {fileID: 1587090673}
   enemySpeed: 1
-  timeBeforemove: 0.5
+  timeBeforemove: 1
 --- !u!1001 &64438622
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1673,7 +1673,7 @@ MonoBehaviour:
   - {fileID: 942069686}
   - {fileID: 1206163499}
   enemySpeed: 1
-  timeBeforemove: 0.5
+  timeBeforemove: 1
 --- !u!1001 &758807571
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2369,7 +2369,7 @@ MonoBehaviour:
   - {fileID: 1738044257}
   - {fileID: 2041834846}
   enemySpeed: 1
-  timeBeforemove: 0.5
+  timeBeforemove: 1
 --- !u!1001 &988288410
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2781,7 +2781,7 @@ MonoBehaviour:
   prefabsToInstantiate: {fileID: 4769378207622036641, guid: 94dbf824931976b4d93890193b9814b4, type: 3}
   TimerUI: {fileID: 1124775181}
   elapsedTime: 0
-  time: 5
+  time: 61
   gameStatus: 0
 --- !u!4 &1261562025
 Transform:

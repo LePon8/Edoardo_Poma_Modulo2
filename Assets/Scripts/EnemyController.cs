@@ -22,7 +22,7 @@ public class EnemyController : MonoBehaviour
         StartCoroutine(EnemyMovement());
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
@@ -34,7 +34,7 @@ public class EnemyController : MonoBehaviour
     int index = 0;
     IEnumerator EnemyMovement()
     {
-        if (index == 0/*pPoints.Length - 1 != index*/)
+        if (index == 0)
         {
             yield return new WaitForSeconds(timeBeforemove);
             transform.position = Vector3.MoveTowards(transform.position, pPoints[0].transform.position, enemySpeed * Time.deltaTime);
@@ -48,7 +48,7 @@ public class EnemyController : MonoBehaviour
         {
             yield return new WaitForSeconds(timeBeforemove);
             transform.position = Vector3.MoveTowards(transform.position, pPoints[1].transform.position, enemySpeed * Time.deltaTime);
-            if (Vector3.Distance(transform.position, pPoints[1].transform.position) <= 0 /*&& index != 0*/)
+            if (Vector3.Distance(transform.position, pPoints[1].transform.position) <= 0)
             {
                 index = 0;
             }

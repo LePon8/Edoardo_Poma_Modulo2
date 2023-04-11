@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     PlayerController PC;
 
     [SerializeField] public TextMeshProUGUI TimerUI;
+    EnemyController EC;
 
     private float timeLimit = 1;
     [SerializeField] float elapsedTime;
@@ -28,6 +29,7 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         UIM = FindObjectOfType<UIManager>();
+        EC = FindObjectOfType<EnemyController>();
         TimerUI.text = 0.ToString();
         Time.timeScale = 1;
     }
@@ -43,6 +45,7 @@ public class GameManager : MonoBehaviour
         Instantiate(prefabsToInstantiate, new Vector2(0, 0), Quaternion.identity);
         PC = FindObjectOfType<PlayerController>();
         
+        
         elapsedTime = time;
     }
 
@@ -51,6 +54,7 @@ public class GameManager : MonoBehaviour
     {
         StatusGame();
         TimerController();
+        Win();
     }
 
     void StatusGame()
@@ -95,6 +99,20 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         SceneManager.LoadScene("GameOver");
+    }
+
+    //GameObject Enemies;
+    public void Win()
+    {
+        //foreach (var enemy in enemies)
+        //{
+
+        //}
+        if (EC == null)
+        {
+            SceneManager.LoadScene("Win");
+
+        }
     }
    
 }

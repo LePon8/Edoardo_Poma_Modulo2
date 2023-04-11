@@ -115,9 +115,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9f13c568118e774bb20553845d32763, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerSpeed: 20
+  playerSpeed: 15
   bomb: {fileID: 3658922249636816792, guid: 10dc075b64a522b4e9157572ee22c92e, type: 3}
-  countDownBetweenShoot: 1
+  countDownBetweenShoot: 3
 --- !u!50 &-5024631852362401012
 Rigidbody2D:
   serializedVersion: 4
